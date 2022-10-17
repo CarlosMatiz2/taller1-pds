@@ -30,9 +30,8 @@ public class Usuario {
     @Column(name = "dependencia")
     private Dependencia dependencia;
 
-    @Column(name = "perfil", columnDefinition = "Perfil[]")
-    @Type(type = "com.vladmihalcea.hibernate.type.array.ListArrayType")
-    private Perfil[] perfil;
+   // @Column(name = "perfil")
+   // private Perfil[] perfil;
 
     @JsonManagedReference
     @OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)

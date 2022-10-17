@@ -1,0 +1,17 @@
+server:
+  servlet:
+    context-path: /v1/taller1
+  port: 8080
+spring:
+  application:
+    name: taller1-app
+  datasource:
+    url: jdbc:h2:mem:taller1db
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: sa
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    show-sql: true
+    hibernate:
+      ddl-auto: create
