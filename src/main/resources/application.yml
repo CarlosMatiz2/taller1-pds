@@ -6,4 +6,4 @@ spring:
   application:
     name: taller1-app
   profiles:
-    active: dev
+    active: prod

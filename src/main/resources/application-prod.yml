@@ -1,9 +1,9 @@
 spring:
   datasource:
-    url: jdbc:postgresql://
+    url: jdbc:postgresql://ec2-52-70-45-163.compute-1.amazonaws.com:5432/d7ndc9j05ch92b
     driver-class-name: org.postgresql.Driver
-    username:
-    password:
+    username: xzozsjzxuijhuy
+    password: aea2d6bdb287a31bdb71f1073ed4add35bc1ed49f956e9efc0573243715429d8
   sql:
     init:
       platform: postgres
