@@ -22,7 +22,7 @@ public class Tarea {
 
     @JsonBackReference
     @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "fila_id")
+    @JoinColumn(name = "id")
     private Fila fila;
 
 }
