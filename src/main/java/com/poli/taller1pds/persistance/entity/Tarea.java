@@ -21,8 +21,7 @@ public class Tarea {
     private String nombre;
 
     @JsonBackReference
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id")
+    @OneToOne(fetch = FetchType.EAGER, mappedBy = "tarea")
     private Fila fila;
 
 }

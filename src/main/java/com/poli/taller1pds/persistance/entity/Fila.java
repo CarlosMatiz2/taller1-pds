@@ -19,7 +19,8 @@ public class Fila {
     private Integer id;
 
     @JsonManagedReference
-    @OneToOne(mappedBy = "fila", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "tarea_id")
     private Tarea tarea;
 
     @Column(name = "duracion")
