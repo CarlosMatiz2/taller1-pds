@@ -1,7 +1,9 @@
 package com.poli.taller1pds.service;
 
+import com.poli.taller1pds.mapper.TareaInDTOToTarea;
 import com.poli.taller1pds.persistance.entity.Tarea;
 import com.poli.taller1pds.persistance.repository.TareaRepository;
+import com.poli.taller1pds.service.DTO.TareaInDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -11,16 +13,17 @@ import java.util.List;
 @RequiredArgsConstructor
 public class TareaServiceImpl implements TareaService{
 
-    private final TareaRepository repository;
+    private final TareaRepository tareaRepository;
 
+    private final TareaInDTOToTarea tareaInDTOToTarea;
 
     @Override
-    public Tarea save(Tarea tarea) {
-        return repository.save(tarea);
+    public Tarea save(TareaInDTO tareaInDTO) {
+        return this.tareaRepository.save(this.tareaInDTOToTarea.map(tareaInDTO));
     }
 
     @Override
     public List<Tarea> findAll() {
-        return repository.findAll();
+        return tareaRepository.findAll();
     }
 }
