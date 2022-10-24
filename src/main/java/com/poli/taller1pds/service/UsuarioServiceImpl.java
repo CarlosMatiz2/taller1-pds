@@ -28,7 +28,7 @@ public class UsuarioServiceImpl implements UsuarioService{
         });*/
         int current_age = getAge(usuario.getFecha_nacimiento());
         Boolean validateDuration = longerDuration(25); // Falta saber como tomar la duration, lo de arriba es por q creo q tocaria recorrer todoo el arreglo.
-
+        usuario.setActivo(false);
         if(validations(validateDuration, current_age)) return repository.save(usuario);
         return null;
     }
