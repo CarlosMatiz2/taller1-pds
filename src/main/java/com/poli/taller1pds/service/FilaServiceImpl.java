@@ -22,4 +22,9 @@ public class FilaServiceImpl implements FilaService{
     public List<Fila> findAll() {
         return repository.findAll();
     }
+
+    @Override
+    public void deleteById(Integer id) {
+        repository.deleteById(id);
+    }
 }

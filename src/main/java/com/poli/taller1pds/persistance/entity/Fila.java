@@ -19,7 +19,7 @@ public class Fila {
     private Integer id;
 
     @JsonManagedReference
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE, orphanRemoval = true)
     @JoinColumn(name = "tarea_id")
     private Tarea tarea;
 

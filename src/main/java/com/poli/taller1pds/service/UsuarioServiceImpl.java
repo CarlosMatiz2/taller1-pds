@@ -38,6 +38,11 @@ public class UsuarioServiceImpl implements UsuarioService{
         return repository.findAll();
     }
 
+    @Override
+    public void deleteById(Integer id) {
+        repository.deleteById(id);
+    }
+
     public int getAge(Date fecha_nacimiento) {
         LocalDate today = LocalDate.now();
         Calendar calendar = Calendar.getInstance();

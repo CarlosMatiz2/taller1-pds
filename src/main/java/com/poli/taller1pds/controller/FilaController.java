@@ -24,4 +24,9 @@ public class FilaController {
         return filaService.findAll();
     }
 
+    @DeleteMapping("/{id}")
+    public void deleteById(@PathVariable Integer id){
+        filaService.deleteById(id);
+    }
+
 }

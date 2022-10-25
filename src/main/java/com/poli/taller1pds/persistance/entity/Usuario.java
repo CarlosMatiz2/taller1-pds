@@ -35,7 +35,7 @@ public class Usuario {
     private Collection<Perfil> perfil;
 
     @JsonManagedReference
-    @OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE, orphanRemoval = true)
     private Set<Fila> filas;
 
 }

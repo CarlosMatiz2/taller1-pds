@@ -10,4 +10,6 @@ public interface FilaService {
 
     List<Fila> findAll();
 
+    void deleteById(Integer id);
+
 }
