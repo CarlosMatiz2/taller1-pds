@@ -12,4 +12,6 @@ public interface UsuarioService {
 
     void deleteById(Integer id);
 
+    Usuario updateUser(Usuario usuario);
+
 }

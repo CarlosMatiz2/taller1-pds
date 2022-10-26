@@ -29,4 +29,9 @@ public class UsuarioController {
         usuarioService.deleteById(id);
     }
 
+    @PutMapping
+    public Usuario updateUser(@RequestBody Usuario usuario){
+        return usuarioService.updateUser(usuario);
+    }
+
 }

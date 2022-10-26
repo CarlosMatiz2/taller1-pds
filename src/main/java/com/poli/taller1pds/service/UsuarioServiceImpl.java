@@ -9,7 +9,7 @@ import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicReference;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -41,6 +41,13 @@ public class UsuarioServiceImpl implements UsuarioService{
     @Override
     public void deleteById(Integer id) {
         repository.deleteById(id);
+    }
+
+    public Usuario updateUser(Usuario usuario) {
+        Optional<Usuario> user = repository.findById(usuario.getId());
+        user.get().setActivo(usuario.getActivo());
+        user.get().setFecha_nacimiento(usuario.getFecha_nacimiento());
+        return repository.save(user.get());
     }
 
     public int getAge(Date fecha_nacimiento) {
