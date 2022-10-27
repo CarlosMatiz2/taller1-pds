@@ -1,6 +1,7 @@
 package com.poli.taller1pds.controller;
 
 import com.poli.taller1pds.persistance.entity.Fila;
+import com.poli.taller1pds.service.DTO.FilaInDTO;
 import com.poli.taller1pds.service.FilaService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -15,8 +16,8 @@ public class FilaController {
     private final FilaService filaService;
 
     @PostMapping
-    public Fila createFila(@RequestBody Fila fila){
-        return filaService.save(fila);
+    public Fila createFila(@RequestBody FilaInDTO filaInDTO){
+        return filaService.save(filaInDTO);
     }
 
     @GetMapping
