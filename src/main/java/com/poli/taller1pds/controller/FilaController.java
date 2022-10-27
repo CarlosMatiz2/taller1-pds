@@ -19,9 +19,6 @@ public class FilaController {
 
     @PostMapping
     public Fila createFila(@RequestBody FilaInDTO filaInDTO){
-        if(filaInDTO.getDuracion() < 1 || filaInDTO.getDuracion() > 60){
-            throw new FilaException("La duración debe ser un rango entre 1 a 60", HttpStatus.BAD_REQUEST);
-        }
         return filaService.save(filaInDTO);
     }
 
