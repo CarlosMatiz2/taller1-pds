@@ -2,6 +2,7 @@ package com.poli.taller1pds.controller;
 
 import com.poli.taller1pds.exceptions.FilaException;
 import com.poli.taller1pds.persistance.entity.Fila;
+import com.poli.taller1pds.persistance.entity.Tarea;
 import com.poli.taller1pds.service.DTO.FilaInDTO;
 import com.poli.taller1pds.service.FilaService;
 import lombok.RequiredArgsConstructor;
@@ -31,5 +32,8 @@ public class FilaController {
     public void deleteById(@PathVariable Integer id){
         filaService.deleteById(id);
     }
+
+    @PutMapping
+    public Fila updateFila(@RequestBody Fila fila) { return filaService.updateFila(fila); }
 
 }

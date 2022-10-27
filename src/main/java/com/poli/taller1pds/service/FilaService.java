@@ -13,4 +13,5 @@ public interface FilaService {
 
     void deleteById(Integer id);
 
+    Fila updateFila(Fila fila);
 }
