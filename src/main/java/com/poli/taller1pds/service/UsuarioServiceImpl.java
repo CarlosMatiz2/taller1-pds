@@ -1,11 +1,13 @@
 package com.poli.taller1pds.service;
 
+import com.poli.taller1pds.exceptions.UsuarioException;
 import com.poli.taller1pds.mapper.TareaInDTOToTarea;
 import com.poli.taller1pds.mapper.UsuarioInDTOToUsuario;
 import com.poli.taller1pds.persistance.entity.Usuario;
 import com.poli.taller1pds.persistance.repository.UsuarioRepository;
 import com.poli.taller1pds.service.DTO.UsuarioInDTO;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -24,18 +26,11 @@ public class UsuarioServiceImpl implements UsuarioService{
 
     @Override
     public Usuario save(UsuarioInDTO usuarioInDTO) {
-        /*AtomicReference<Boolean> validateDuration = new AtomicReference<>(true);
-        usuario.getFilas().forEach(element -> {
-            if(longerDuration(25)){
-                validateDuration.set(false);
-                return;
-            }
-        });*/
-        int current_age = getAge(usuarioInDTO.getFecha_nacimiento());
-        Boolean validateDuration = longerDuration(25); // Falta saber como tomar la duration, lo de arriba es por q creo q tocaria recorrer todoo el arreglo.
+        if(getAge(usuarioInDTO.getFecha_nacimiento()) < 18){
+            throw new UsuarioException("La edad del usuario debe ser mayor a 18 años", HttpStatus.BAD_REQUEST);
+        }
         usuarioInDTO.setActivo(false);
-        if(validations(validateDuration, current_age)) return repository.save(this.usuarioInDTOToUsuario.map(usuarioInDTO));
-        return null;
+        return repository.save(this.usuarioInDTOToUsuario.map(usuarioInDTO));
     }
 
     @Override
@@ -51,6 +46,9 @@ public class UsuarioServiceImpl implements UsuarioService{
     public Usuario updateUser(Usuario usuario) {
         Optional<Usuario> user = repository.findById(usuario.getId());
         user.get().setActivo(usuario.getActivo());
+        if(getAge(usuario.getFecha_nacimiento()) < 18){
+            throw new UsuarioException("La edad del usuario debe ser mayor a 18 años", HttpStatus.BAD_REQUEST);
+        }
         user.get().setFecha_nacimiento(usuario.getFecha_nacimiento());
         return repository.save(user.get());
     }
@@ -63,13 +61,4 @@ public class UsuarioServiceImpl implements UsuarioService{
         return current_age;
     }
 
-    public boolean longerDuration(int duration) {
-        if(duration >= 1 && duration <= 60) return true;
-        return false;
-    }
-
-    public boolean validations(boolean duration, int current_age) {
-        if (duration && current_age > 18) return true;
-        return false;
-    }
 }

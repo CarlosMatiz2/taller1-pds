@@ -1,9 +1,11 @@
 package com.poli.taller1pds.controller;
 
+import com.poli.taller1pds.exceptions.FilaException;
 import com.poli.taller1pds.persistance.entity.Fila;
 import com.poli.taller1pds.service.DTO.FilaInDTO;
 import com.poli.taller1pds.service.FilaService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,6 +19,9 @@ public class FilaController {
 
     @PostMapping
     public Fila createFila(@RequestBody FilaInDTO filaInDTO){
+        if(filaInDTO.getDuracion() < 1 || filaInDTO.getDuracion() > 60){
+            throw new FilaException("La duración debe ser un rango entre 1 a 60", HttpStatus.BAD_REQUEST);
+        }
         return filaService.save(filaInDTO);
     }
 
