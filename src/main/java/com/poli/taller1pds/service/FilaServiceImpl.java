@@ -30,6 +30,6 @@ public class FilaServiceImpl implements FilaService{
 
     @Override
     public void deleteById(Integer id) {
-        repository.deleteById(id);
+        filaRepository.deleteById(id);
     }
 }

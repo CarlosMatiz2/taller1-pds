@@ -29,6 +29,6 @@ public class TareaServiceImpl implements TareaService{
 
     @Override
     public void deleteById(Integer id) {
-        repository.deleteById(id);
+        tareaRepository.deleteById(id);
     }
 }

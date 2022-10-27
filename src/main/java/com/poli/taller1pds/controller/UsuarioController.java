@@ -1,6 +1,7 @@
 package com.poli.taller1pds.controller;
 
 import com.poli.taller1pds.persistance.entity.Usuario;
+import com.poli.taller1pds.service.DTO.UsuarioInDTO;
 import com.poli.taller1pds.service.UsuarioService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -15,8 +16,8 @@ public class UsuarioController {
     private final UsuarioService usuarioService;
 
     @PostMapping
-    public Usuario createUsuario(@RequestBody Usuario usuario){
-        return usuarioService.save(usuario);
+    public Usuario createUsuario(@RequestBody UsuarioInDTO usuarioInDTO){
+        return usuarioService.save(usuarioInDTO);
     }
 
     @GetMapping

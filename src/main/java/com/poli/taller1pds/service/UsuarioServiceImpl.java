@@ -1,7 +1,10 @@
 package com.poli.taller1pds.service;
 
+import com.poli.taller1pds.mapper.TareaInDTOToTarea;
+import com.poli.taller1pds.mapper.UsuarioInDTOToUsuario;
 import com.poli.taller1pds.persistance.entity.Usuario;
 import com.poli.taller1pds.persistance.repository.UsuarioRepository;
+import com.poli.taller1pds.service.DTO.UsuarioInDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,8 +20,10 @@ public class UsuarioServiceImpl implements UsuarioService{
 
     private final UsuarioRepository repository;
 
+    private final UsuarioInDTOToUsuario usuarioInDTOToUsuario;
+
     @Override
-    public Usuario save(Usuario usuario) {
+    public Usuario save(UsuarioInDTO usuarioInDTO) {
         /*AtomicReference<Boolean> validateDuration = new AtomicReference<>(true);
         usuario.getFilas().forEach(element -> {
             if(longerDuration(25)){
@@ -26,10 +31,10 @@ public class UsuarioServiceImpl implements UsuarioService{
                 return;
             }
         });*/
-        int current_age = getAge(usuario.getFecha_nacimiento());
+        int current_age = getAge(usuarioInDTO.getFecha_nacimiento());
         Boolean validateDuration = longerDuration(25); // Falta saber como tomar la duration, lo de arriba es por q creo q tocaria recorrer todoo el arreglo.
-        usuario.setActivo(false);
-        if(validations(validateDuration, current_age)) return repository.save(usuario);
+        usuarioInDTO.setActivo(false);
+        if(validations(validateDuration, current_age)) return repository.save(this.usuarioInDTOToUsuario.map(usuarioInDTO));
         return null;
     }
 
