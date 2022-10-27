@@ -24,4 +24,14 @@ public class UsuarioController {
         return usuarioService.findAll();
     }
 
+    @DeleteMapping("/{id}")
+    public void deleteById(@PathVariable Integer id){
+        usuarioService.deleteById(id);
+    }
+
+    @PutMapping
+    public Usuario updateUser(@RequestBody Usuario usuario){
+        return usuarioService.updateUser(usuario);
+    }
+
 }

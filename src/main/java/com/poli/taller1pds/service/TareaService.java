@@ -11,4 +11,6 @@ public interface TareaService {
 
     List<Tarea> findAll();
 
+    void deleteById(Integer id);
+
 }

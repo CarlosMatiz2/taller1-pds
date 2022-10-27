@@ -10,4 +10,8 @@ public interface UsuarioService {
 
     List<Usuario> findAll();
 
+    void deleteById(Integer id);
+
+    Usuario updateUser(Usuario usuario);
+
 }

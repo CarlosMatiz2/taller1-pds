@@ -26,4 +26,9 @@ public class TareaServiceImpl implements TareaService{
     public List<Tarea> findAll() {
         return tareaRepository.findAll();
     }
+
+    @Override
+    public void deleteById(Integer id) {
+        repository.deleteById(id);
+    }
 }

@@ -25,4 +25,9 @@ public class TareaController {
         return tareaService.findAll();
     }
 
+    @DeleteMapping("/{id}")
+    public void deleteById(@PathVariable Integer id){
+        tareaService.deleteById(id);
+    }
+
 }

@@ -3,12 +3,11 @@ package com.poli.taller1pds.persistance.entity;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
-import javax.validation.constraints.Size;
+import java.util.Collection;
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -30,11 +29,13 @@ public class Usuario {
     @Column(name = "dependencia")
     private Dependencia dependencia;
 
-   // @Column(name = "perfil")
-   // private Perfil[] perfil;
+    @ElementCollection(targetClass = Perfil.class)
+    @Column(name = "perfil")
+    @Enumerated(EnumType.STRING)
+    private Collection<Perfil> perfil;
 
     @JsonManagedReference
-    @OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-    private List<Fila> filas;
+    @OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private Set<Fila> filas;
 
 }
